@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WaveResource" format=3 uid="uid://l8taqrrkvrfy"]
+
+[ext_resource type="Script" uid="uid://dfgtotu8mnggb" path="res://ressource/wave/enemy_wave_entry.gd" id="1_5lv5s"]
+[ext_resource type="Script" uid="uid://7o7dadxni3to" path="res://ressource/wave/wave_resource.gd" id="2_rqjjl"]
+
+[sub_resource type="Resource" id="Resource_i3gv3"]
+script = ExtResource("1_5lv5s")
+amount = 120
+enabled_sides = 15
+metadata/_custom_type_script = "uid://dfgtotu8mnggb"
+
+[resource]
+script = ExtResource("2_rqjjl")
+entries = Array[ExtResource("1_5lv5s")]([SubResource("Resource_i3gv3")])
+metadata/_custom_type_script = "uid://7o7dadxni3to"

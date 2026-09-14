@@ -1,2 +1,3 @@
+WaveResource
 Shader
 ShaderMaterial

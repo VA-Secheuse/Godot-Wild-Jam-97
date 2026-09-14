@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://nykohm1mwa06"]
 
-[ext_resource type="Script" uid="uid://htexcfy4k3wh" path="res://scene/characters/player/player.gd" id="1_vj7nq"]
+[ext_resource type="Script" uid="uid://htexcfy4k3wh" path="res://scene/entity/player/player.gd" id="1_vj7nq"]
 [ext_resource type="Texture2D" uid="uid://chv0yofddhblh" path="res://assets/tmp_assets/Main_dude.png" id="2_v7krq"]
 [ext_resource type="Script" uid="uid://lankyagd7i8i" path="res://script/state_machine/state_machine.gd" id="3_8nhx4"]
-[ext_resource type="Script" uid="uid://bfkefp53k2d11" path="res://scene/characters/player/idle.gd" id="4_wf2u3"]
-[ext_resource type="Script" uid="uid://kkvik7gf3s6g" path="res://scene/characters/player/walking.gd" id="5_efkcd"]
+[ext_resource type="Script" uid="uid://bfkefp53k2d11" path="res://scene/entity/player/idle.gd" id="4_wf2u3"]
+[ext_resource type="Script" uid="uid://kkvik7gf3s6g" path="res://scene/entity/player/walking.gd" id="5_efkcd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0hgp5"]
 radius = 14.0

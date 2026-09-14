@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WaveResource" format=3 uid="uid://dk0jme14yxit4"]
+
+[ext_resource type="Script" uid="uid://dfgtotu8mnggb" path="res://ressource/wave/enemy_wave_entry.gd" id="1_f5vkx"]
+[ext_resource type="Script" uid="uid://7o7dadxni3to" path="res://ressource/wave/wave_resource.gd" id="2_ugsgq"]
+
+[sub_resource type="Resource" id="Resource_xpdq0"]
+script = ExtResource("1_f5vkx")
+amount = 50
+enabled_sides = 5
+metadata/_custom_type_script = "uid://dfgtotu8mnggb"
+
+[sub_resource type="Resource" id="Resource_edw05"]
+script = ExtResource("1_f5vkx")
+level = 2
+amount = 20
+enabled_sides = 5
+metadata/_custom_type_script = "uid://dfgtotu8mnggb"
+
+[resource]
+script = ExtResource("2_ugsgq")
+entries = Array[ExtResource("1_f5vkx")]([SubResource("Resource_xpdq0"), SubResource("Resource_edw05")])
+metadata/_custom_type_script = "uid://7o7dadxni3to"

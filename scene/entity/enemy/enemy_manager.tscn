@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cbxo0ir35e6ol"]
+
+[ext_resource type="Script" uid="uid://cc812ep3xuvnf" path="res://scene/entity/enemy/enemy_manager.gd" id="1_m23cw"]
+[ext_resource type="Script" uid="uid://7o7dadxni3to" path="res://ressource/wave/wave_resource.gd" id="2_gkuxk"]
+[ext_resource type="Resource" uid="uid://l8taqrrkvrfy" path="res://ressource/wave/wave_1.tres" id="3_48rdy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkuxk"]
+size = Vector2(177, 177)
+
+[node name="EnemyManager" type="Node2D" unique_id=77188829]
+script = ExtResource("1_m23cw")
+max_on_screened_enemy = 50
+waves_info = Array[ExtResource("2_gkuxk")]([ExtResource("3_48rdy")])
+
+[node name="LiveEnemy" type="Node2D" parent="." unique_id=780543791]
+
+[node name="EnemySpawn" type="Area2D" parent="." unique_id=791348649]
+
+[node name="SpawnLeft" type="CollisionShape2D" parent="EnemySpawn" unique_id=2115149023]
+position = Vector2(-503, 0)
+shape = SubResource("RectangleShape2D_gkuxk")
+
+[node name="SpawnRight" type="CollisionShape2D" parent="EnemySpawn" unique_id=867160674]
+position = Vector2(596, 0)
+shape = SubResource("RectangleShape2D_gkuxk")
+
+[node name="SpawnTop" type="CollisionShape2D" parent="EnemySpawn" unique_id=1940746493]
+position = Vector2(0, -415)
+shape = SubResource("RectangleShape2D_gkuxk")
+
+[node name="SpawnBot" type="CollisionShape2D" parent="EnemySpawn" unique_id=265512693]
+position = Vector2(0, 432)
+shape = SubResource("RectangleShape2D_gkuxk")
+
+[node name="Timer" type="Timer" parent="." unique_id=1194974895]
+wait_time = 4.0
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=542528987]
+zoom = Vector2(0.3, 0.3)
+
+[connection signal="wave_finished" from="." to="." method="_on_wave_finished"]
+[connection signal="timeout" from="Timer" to="." method="_start_spawning_enemy"]

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c8ge3uyjq22hw"]
+
+[ext_resource type="Script" uid="uid://dneersjkpkprs" path="res://scene/entity/enemy/sand_sprite/sand_sprite.gd" id="1_dwxk0"]
+[ext_resource type="Texture2D" uid="uid://cx4ubdo6rvmh" path="res://assets/sprite/entity/monster/sand_sprite_spritesheet.png" id="2_hoyuu"]
+[ext_resource type="Script" uid="uid://lankyagd7i8i" path="res://script/state_machine/state_machine.gd" id="3_mlxxo"]
+[ext_resource type="Script" uid="uid://cqc50cf5egqob" path="res://scene/entity/enemy/sand_sprite/idle.gd" id="4_0ywgw"]
+[ext_resource type="Script" uid="uid://dvo81ct6ihbg8" path="res://scene/entity/enemy/sand_sprite/walking.gd" id="5_0htch"]
+[ext_resource type="Script" uid="uid://dh6n8gon18d80" path="res://scene/entity/enemy/sand_sprite/attack.gd" id="6_m6qnj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mng6"]
+size = Vector2(12, 9)
+
+[node name="SandSprite" type="CharacterBody2D" unique_id=1076228096]
+script = ExtResource("1_dwxk0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1149364374]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_6mng6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1314197989]
+texture_filter = 1
+texture = ExtResource("2_hoyuu")
+offset = Vector2(0, -12)
+hframes = 3
+
+[node name="StateMachine" type="Node" parent="." unique_id=1194259039 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_mlxxo")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://lankyagd7i8i"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=2119459888]
+script = ExtResource("4_0ywgw")
+
+[node name="Walking" type="Node" parent="StateMachine" unique_id=1262795831]
+script = ExtResource("5_0htch")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=117221063]
+script = ExtResource("6_m6qnj")

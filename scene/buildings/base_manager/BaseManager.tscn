@@ -78,7 +78,6 @@ position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_0hgp5")
 
 [node name="WallArea" type="Area2D" parent="." unique_id=1867928822]
-visible = false
 collision_layer = 64
 collision_mask = 0
 
