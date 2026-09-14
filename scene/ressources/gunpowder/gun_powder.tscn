@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://6swrh6lvbfkl"]
+
+[ext_resource type="Texture2D" uid="uid://v0nl3vj1wisp" path="res://assets/sprite/ressources/Gunpowder.png" id="1_oaduq"]
+[ext_resource type="Script" uid="uid://cgi5fiqjad5j3" path="res://scene/ressources/gunpowder/gun_powder.gd" id="1_yrxdn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaduq"]
+size = Vector2(22, 23)
+
+[node name="GunPowder" type="Sprite2D" unique_id=1708723888]
+texture_filter = 1
+texture = ExtResource("1_oaduq")
+offset = Vector2(0, -3)
+script = ExtResource("1_yrxdn")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=387584942]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=837718917]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_oaduq")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

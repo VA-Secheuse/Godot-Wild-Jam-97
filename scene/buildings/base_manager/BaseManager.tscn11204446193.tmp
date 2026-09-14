@@ -1,0 +1,59 @@
+[gd_scene format=4 uid="uid://dtxfaae7o0hh1"]
+
+[ext_resource type="Script" uid="uid://byfw0u27eax6b" path="res://scene/buildings/base_manager/base_manager.gd" id="1_reqh1"]
+[ext_resource type="Texture2D" uid="uid://bsy2qfdryd1sr" path="res://assets/tmp_assets/spr_custom_gen_tileset.png" id="2_qw2r0"]
+[ext_resource type="Shader" uid="uid://b43jeam0v4udx" path="res://ressource/shader/transparent.gdshader" id="3_6vg8a"]
+[ext_resource type="Script" uid="uid://ts7fnyhmvgny" path="res://scene/buildings/base_manager/hovering_sprite.gd" id="3_qw2r0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yud5o"]
+texture = ExtResource("2_qw2r0")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0hgp5"]
+sources/0 = SubResource("TileSetAtlasSource_yud5o")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hgp5"]
+size = Vector2(144, 144)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e61rw"]
+shader = ExtResource("3_6vg8a")
+shader_parameter/alpha_amount = 0.5
+shader_parameter/invalid_amount = 0.0
+shader_parameter/invalid_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reqh1"]
+size = Vector2(16, 16)
+
+[node name="BaseManager" type="Node2D" unique_id=101830274]
+script = ExtResource("1_reqh1")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=590495660]
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAD//wAAAAABAAAAAAD+/wAAAAABAAAAAAD9/wAAAAABAAAAAAD8/wAAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAAAP//AAABAAAAAAAAAP7/AAABAAAAAAAAAP3/AAABAAAAAAAAAPz/AAABAAAAAAAAAAEAAAABAAAAAAAAAAIAAAABAAAAAAAAAAMAAAABAAAAAAAAAAQAAAABAAAAAAD//wQAAAABAAAAAAD+/wQAAAABAAAAAAD9/wQAAAABAAAAAAD8/wQAAAABAAAAAAD8/wMAAAABAAAAAAD8/wIAAAABAAAAAAD8/wEAAAABAAAAAAD8////AAABAAAAAAD8//7/AAABAAAAAAD8//3/AAABAAAAAAD8//z/AAABAAAAAAD9//z/AAABAAAAAAD+//z/AAABAAAAAAD///z/AAABAAAAAAABAPz/AAABAAAAAAACAPz/AAABAAAAAAADAPz/AAABAAAAAAAEAPz/AAABAAAAAAAEAP3/AAABAAAAAAAEAP7/AAABAAAAAAAEAP//AAABAAAAAAAEAAEAAAABAAAAAAAEAAIAAAABAAAAAAAEAAMAAAABAAAAAAAEAAQAAAABAAAAAAADAAQAAAABAAAAAAACAAQAAAABAAAAAAABAAQAAAABAAAAAAABAAMAAAABAAAAAAABAAIAAAABAAAAAAABAAEAAAABAAAAAAABAP//AAABAAAAAAABAP7/AAABAAAAAAABAP3/AAABAAAAAAACAP3/AAABAAAAAAADAP3/AAABAAAAAAADAP7/AAABAAAAAAADAP//AAABAAAAAAADAAEAAAABAAAAAAADAAIAAAABAAAAAAADAAMAAAABAAAAAAACAAMAAAABAAAAAAACAAIAAAABAAAAAAACAAEAAAABAAAAAAACAP//AAABAAAAAAACAP7/AAABAAAAAAD///3/AAABAAAAAAD+//3/AAABAAAAAAD9//3/AAABAAAAAAD+//7/AAABAAAAAAD///7/AAABAAAAAAD9//7/AAABAAAAAAD/////AAABAAAAAAD9////AAABAAAAAAD+////AAABAAAAAAD//wIAAAABAAAAAAD//wEAAAABAAAAAAD+/wEAAAABAAAAAAD9/wEAAAABAAAAAAD+/wIAAAABAAAAAAD9/wIAAAABAAAAAAD+/wMAAAABAAAAAAD//wMAAAABAAAAAAD9/wMAAAABAAAAAAD7////AAADAAAAAAD7//7/AAADAAAAAAD7//3/AAADAAAAAAD7//z/AAADAAAAAAD7/wEAAAADAAAAAAD7/wIAAAADAAAAAAD7/wMAAAADAAAAAAD7/wQAAAADAAAAAAD7/wUAAAADAAAAAAD8/wUAAAADAAAAAAD9/wUAAAADAAAAAAD+/wUAAAADAAAAAAD//wUAAAADAAAAAAABAAUAAAADAAAAAAACAAUAAAADAAAAAAADAAUAAAADAAAAAAAEAAUAAAADAAAAAAAFAAUAAAADAAAAAAAFAAQAAAADAAAAAAAFAAMAAAADAAAAAAAFAAIAAAADAAAAAAAFAAEAAAADAAAAAAAFAP//AAADAAAAAAAFAP7/AAADAAAAAAAFAP3/AAADAAAAAAAFAPz/AAADAAAAAAAFAPv/AAADAAAAAAAEAPv/AAADAAAAAAADAPv/AAADAAAAAAACAPv/AAADAAAAAAABAPv/AAADAAAAAAD+//v/AAADAAAAAAD9//v/AAADAAAAAAD8//v/AAADAAAAAAD7//v/AAADAAAAAAD///v/AAADAAAAAAAAAAUAAAACAAAAAAD7/wAAAAACAAAAAAAAAPv/AAACAAAAAAAFAAAAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_0hgp5")
+
+[node name="BuildableArea" type="Area2D" parent="." unique_id=450807013]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildableArea" unique_id=657756109]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_0hgp5")
+
+[node name="HoveringSprite" type="Sprite2D" parent="." unique_id=1932947025]
+visible = false
+material = SubResource("ShaderMaterial_e61rw")
+script = ExtResource("3_qw2r0")
+
+[node name="Hover" type="Area2D" parent="HoveringSprite" unique_id=1347226381]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoveringSprite/Hover" unique_id=1102083763]
+position = Vector2(-56, -56)
+shape = SubResource("RectangleShape2D_reqh1")
+
+[connection signal="change_selected_building" from="." to="." method="_on_change_selected_building"]
+[connection signal="area_entered" from="HoveringSprite/Hover" to="HoveringSprite" method="_on_hover_area_entered"]

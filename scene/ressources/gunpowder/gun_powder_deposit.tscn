@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c62dlj0w4urlq"]
+
+[ext_resource type="Script" uid="uid://d1j2jigfvynx4" path="res://scene/ressources/gunpowder/gun_powder_deposit.gd" id="1_73msi"]
+[ext_resource type="Shader" uid="uid://bybgp5xiwmlo1" path="res://ressource/shader/rock_cracking.gdshader" id="2_p4yw7"]
+[ext_resource type="Texture2D" uid="uid://try63c7qr0f7" path="res://assets/sprite/ressources/Gunpowder_deposit.png" id="3_p4yw7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2q37s"]
+size = Vector2(40, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlhv0"]
+shader = ExtResource("2_p4yw7")
+shader_parameter/crack_amount = 0.0
+shader_parameter/cell_scale = 12.38000054055
+shader_parameter/crack_thickness = 0.1250000059375
+shader_parameter/crack_color = Color(0.05, 0.03, 0.02, 1)
+shader_parameter/seed = 100.0
+shader_parameter/texture_pixel_size = Vector2(0.03125, 0.03125)
+shader_parameter/pixel_scale = 1.0
+
+[node name="GunPowderDeposit" type="StaticBody2D" unique_id=433352492]
+script = ExtResource("1_73msi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1033101342]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_2q37s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=988053667]
+texture_filter = 1
+material = SubResource("ShaderMaterial_hlhv0")
+position = Vector2(0, 6)
+texture = ExtResource("3_p4yw7")
+offset = Vector2(0, -18)

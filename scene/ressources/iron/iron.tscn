@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cj4y446gdhx07"]
+
+[ext_resource type="Texture2D" uid="uid://ww5fpb680t5y" path="res://assets/sprite/ressources/Metal_resource.png" id="1_6m54w"]
+[ext_resource type="Script" uid="uid://bppcsel4uvs3" path="res://scene/ressources/iron/iron_resource.gd" id="1_8pb8c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6m54w"]
+size = Vector2(22, 23)
+
+[node name="Iron" type="Sprite2D" unique_id=866666686]
+texture_filter = 1
+texture = ExtResource("1_6m54w")
+offset = Vector2(0, -5)
+script = ExtResource("1_8pb8c")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1585916394]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1717511462]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_6m54w")

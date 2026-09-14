@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://nykohm1mwa06"]
+
+[ext_resource type="Script" uid="uid://htexcfy4k3wh" path="res://scene/characters/player/player.gd" id="1_vj7nq"]
+[ext_resource type="Texture2D" uid="uid://chv0yofddhblh" path="res://assets/tmp_assets/Main_dude.png" id="2_v7krq"]
+[ext_resource type="Script" uid="uid://lankyagd7i8i" path="res://script/state_machine/state_machine.gd" id="3_8nhx4"]
+[ext_resource type="Script" uid="uid://bfkefp53k2d11" path="res://scene/characters/player/idle.gd" id="4_wf2u3"]
+[ext_resource type="Script" uid="uid://kkvik7gf3s6g" path="res://scene/characters/player/walking.gd" id="5_efkcd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0hgp5"]
+radius = 14.0
+height = 56.0
+
+[node name="Player" type="CharacterBody2D" unique_id=473694908]
+script = ExtResource("1_vj7nq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1463223503]
+texture_filter = 1
+position = Vector2(1, -16)
+texture = ExtResource("2_v7krq")
+
+[node name="PlayerHitBox" type="CollisionShape2D" parent="." unique_id=1658543103]
+visible = false
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_0hgp5")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1872917888 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_8nhx4")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://lankyagd7i8i"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=2011489050]
+script = ExtResource("4_wf2u3")
+
+[node name="Walking" type="Node" parent="StateMachine" unique_id=1734052485]
+script = ExtResource("5_efkcd")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=131813177]

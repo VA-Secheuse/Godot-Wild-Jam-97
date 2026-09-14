@@ -1,0 +1,7 @@
+res://scene/characters/player/player.tscn
+res://ressource/shader/construction_animation.gdshader
+res://ressource/shader/transparent.gdshader
+res://ressource/shader/sandstorm.gdshader
+res://ressource/shader/rock_cracking.gdshader
+res://scene/buildings/base_manager/BaseManager.tscn
+res://scene/main_level/main_level.tscn

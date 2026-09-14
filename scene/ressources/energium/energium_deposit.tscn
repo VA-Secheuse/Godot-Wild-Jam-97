@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ceovi2bvuvehe"]
+
+[ext_resource type="Script" uid="uid://c0qllwycdbfri" path="res://scene/ressources/energium/energium_deposit.gd" id="1_lngdo"]
+[ext_resource type="Shader" uid="uid://bybgp5xiwmlo1" path="res://ressource/shader/rock_cracking.gdshader" id="2_tbdh6"]
+[ext_resource type="Texture2D" uid="uid://cck1ppqyyx6lt" path="res://assets/sprite/ressources/Energium_rock.png" id="3_qqh2e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptuj2"]
+size = Vector2(10, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1u118"]
+shader = ExtResource("2_tbdh6")
+shader_parameter/crack_amount = 0.0
+shader_parameter/cell_scale = 12.38000054055
+shader_parameter/crack_thickness = 0.1250000059375
+shader_parameter/crack_color = Color(0.05, 0.03, 0.02, 1)
+shader_parameter/seed = 100.0
+shader_parameter/texture_pixel_size = Vector2(0.03125, 0.03125)
+shader_parameter/pixel_scale = 1.0
+
+[node name="EnergiumDeposit" type="StaticBody2D" unique_id=2047057901]
+script = ExtResource("1_lngdo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=354872919]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_ptuj2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=121902874]
+texture_filter = 1
+material = SubResource("ShaderMaterial_1u118")
+position = Vector2(0, 6)
+texture = ExtResource("3_qqh2e")
+offset = Vector2(0, -14)

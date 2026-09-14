@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bcu4j5nsp83l7"]
+
+[ext_resource type="Texture2D" uid="uid://m8hx7xjppbgq" path="res://assets/sprite/building/turrets/Tourelle_placeholder.png" id="1_8yx5r"]
+[ext_resource type="Script" uid="uid://dgqf8mdm0but3" path="res://scene/UI/building_ui.gd" id="1_ww300"]
+[ext_resource type="Texture2D" uid="uid://c1147pi8tt20x" path="res://assets/sprite/ui/back_arrow.png" id="2_xpnh5"]
+[ext_resource type="Texture2D" uid="uid://cpiknboxcjw11" path="res://assets/sprite/ui/Destroy.png" id="3_gs2tq"]
+[ext_resource type="Texture2D" uid="uid://df74wl5vhh35b" path="res://assets/sprite/ui/Repair.png" id="3_ixdpu"]
+[ext_resource type="Script" uid="uid://lankyagd7i8i" path="res://script/state_machine/state_machine.gd" id="6_v3hdy"]
+[ext_resource type="Script" uid="uid://dpfxng2bnhy53" path="res://scene/UI/idle.gd" id="7_8gj1e"]
+[ext_resource type="Script" uid="uid://ddhkf6ac56cv7" path="res://scene/UI/build.gd" id="8_vw13s"]
+[ext_resource type="Script" uid="uid://tlu7mj8draip" path="res://scene/UI/destroy.gd" id="9_6vlai"]
+[ext_resource type="Script" uid="uid://cepju3oqt6mlt" path="res://scene/UI/repair.gd" id="10_viyvh"]
+
+[node name="BuildMenu" type="GridContainer" unique_id=125841561 node_paths=PackedStringArray("state_machine")]
+offset_right = 84.0
+offset_bottom = 40.0
+columns = 4
+script = ExtResource("1_ww300")
+state_machine = NodePath("StateMachine")
+
+[node name="Turret" type="Button" parent="." unique_id=1697753679]
+texture_filter = 1
+layout_mode = 2
+icon = ExtResource("1_8yx5r")
+
+[node name="Upgrade" type="Button" parent="." unique_id=1231039209]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 8
+icon = ExtResource("1_8yx5r")
+
+[node name="Back" type="Button" parent="." unique_id=1153169413]
+texture_filter = 1
+layout_mode = 2
+icon = ExtResource("2_xpnh5")
+
+[node name="Repair" type="Button" parent="." unique_id=1147326878]
+texture_filter = 1
+layout_mode = 2
+icon = ExtResource("3_ixdpu")
+
+[node name="Destroy" type="Button" parent="." unique_id=1765751498]
+texture_filter = 1
+layout_mode = 2
+icon = ExtResource("3_gs2tq")
+
+[node name="StateMachine" type="Node" parent="." unique_id=837929132 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_v3hdy")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://lankyagd7i8i"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=777488561]
+script = ExtResource("7_8gj1e")
+
+[node name="Build" type="Node" parent="StateMachine" unique_id=1631672206]
+script = ExtResource("8_vw13s")
+
+[node name="Destroy" type="Node" parent="StateMachine" unique_id=155317550]
+script = ExtResource("9_6vlai")
+
+[node name="Repair" type="Node" parent="StateMachine" unique_id=2040303703]
+script = ExtResource("10_viyvh")
+
+[connection signal="pressed" from="Turret" to="." method="_on_turret_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Repair" to="." method="_on_repair_pressed"]
+[connection signal="pressed" from="Destroy" to="." method="_on_destroy_pressed"]

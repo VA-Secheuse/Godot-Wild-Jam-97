@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://msufmnefh42r"]
+
+[ext_resource type="Script" uid="uid://cv05276j106jd" path="res://scene/main_level/main_level.gd" id="1_dq0vj"]
+[ext_resource type="Texture2D" uid="uid://dphdcqnbrcnxe" path="res://assets/sprite/tile_map/Tileset_sand.png" id="2_rfy4f"]
+[ext_resource type="PackedScene" uid="uid://nykohm1mwa06" path="res://scene/characters/player/player.tscn" id="3_8tepj"]
+[ext_resource type="PackedScene" uid="uid://dtxfaae7o0hh1" path="res://scene/buildings/base_manager/BaseManager.tscn" id="4_rfy4f"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3ym8"]
+texture = ExtResource("2_rfy4f")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0hgp5"]
+sources/1 = SubResource("TileSetAtlasSource_p3ym8")
+
+[node name="MainLevel" type="Node2D" unique_id=1005481756]
+script = ExtResource("1_dq0vj")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=370456454]
+texture_filter = 1
+tile_set = SubResource("TileSet_0hgp5")
+
+[node name="BaseManager" parent="." unique_id=101830274 instance=ExtResource("4_rfy4f")]
+
+[node name="Player" parent="." unique_id=473694908 instance=ExtResource("3_8tepj")]

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bg8adoc45oxab"]
+
+[ext_resource type="Script" uid="uid://bng06ym46bkik" path="res://scene/ressources/iron/iron_deposit.gd" id="1_mtmp1"]
+[ext_resource type="Shader" uid="uid://bybgp5xiwmlo1" path="res://ressource/shader/rock_cracking.gdshader" id="2_608ox"]
+[ext_resource type="Texture2D" uid="uid://bkc3gou5d1am2" path="res://assets/sprite/ressources/Metal_deposit.png" id="3_608ox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkcmf"]
+size = Vector2(27, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grhcc"]
+shader = ExtResource("2_608ox")
+shader_parameter/crack_amount = 0.0
+shader_parameter/cell_scale = 12.38000054055
+shader_parameter/crack_thickness = 0.1250000059375
+shader_parameter/crack_color = Color(0.05, 0.03, 0.02, 1)
+shader_parameter/seed = 100.0
+shader_parameter/texture_pixel_size = Vector2(0.03125, 0.03125)
+shader_parameter/pixel_scale = 1.0
+
+[node name="IronDeposit" type="StaticBody2D" unique_id=492289596]
+script = ExtResource("1_mtmp1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621094268]
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_jkcmf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1104349124]
+texture_filter = 1
+material = SubResource("ShaderMaterial_grhcc")
+position = Vector2(0, 6)
+texture = ExtResource("3_608ox")
+offset = Vector2(0, -18)

@@ -1,0 +1,129 @@
+[gd_scene format=4 uid="uid://dtxfaae7o0hh1"]
+
+[ext_resource type="Script" uid="uid://byfw0u27eax6b" path="res://scene/buildings/base_manager/base_manager.gd" id="1_reqh1"]
+[ext_resource type="Texture2D" uid="uid://bsy2qfdryd1sr" path="res://assets/tmp_assets/spr_custom_gen_tileset.png" id="2_qw2r0"]
+[ext_resource type="Shader" uid="uid://b43jeam0v4udx" path="res://ressource/shader/transparent.gdshader" id="3_6vg8a"]
+[ext_resource type="Texture2D" uid="uid://xckpc1wmjitn" path="res://assets/sprite/tile_map/Base_floor.png" id="3_e61rw"]
+[ext_resource type="Script" uid="uid://ts7fnyhmvgny" path="res://scene/buildings/base_manager/hovering_sprite.gd" id="3_qw2r0"]
+[ext_resource type="Texture2D" uid="uid://u0lott4qu3tq" path="res://assets/sprite/building/walls/mur_horizontal.png" id="6_k1hnu"]
+[ext_resource type="Texture2D" uid="uid://s58omlcvrcet" path="res://assets/sprite/building/walls/Porte_laser.png" id="7_ln30p"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yud5o"]
+texture = ExtResource("2_qw2r0")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k1hnu"]
+texture = ExtResource("3_e61rw")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0hgp5"]
+sources/0 = SubResource("TileSetAtlasSource_yud5o")
+sources/1 = SubResource("TileSetAtlasSource_k1hnu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e61rw"]
+shader = ExtResource("3_6vg8a")
+shader_parameter/alpha_amount = 0.5
+shader_parameter/invalid_amount = 0.0
+shader_parameter/invalid_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reqh1"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hgp5"]
+size = Vector2(142, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hqbw"]
+size = Vector2(176, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76qrq"]
+size = Vector2(14.625, 147)
+
+[node name="BaseManager" type="Node2D" unique_id=101830274]
+y_sort_enabled = true
+script = ExtResource("1_reqh1")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=590495660]
+z_index = -1
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAD//wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD9/wAAAQAAAAAAAAD8/wAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAAAP//AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP3/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAMAAQAAAAAAAAD//wQAAQAAAAAAAAD+/wQAAQAAAAAAAAD9/wQAAQAAAAAAAAD8/wQAAQAAAAAAAAD8/wMAAQAAAAAAAAD8/wIAAQAAAAAAAAD8/wEAAQAAAAAAAAD8////AQAAAAAAAAD8//7/AQAAAAAAAAD8//3/AQAAAAAAAAD8//z/AQAAAAAAAAD9//z/AQAAAAAAAAD+//z/AQAAAAAAAAD///z/AQAAAAAAAAABAPz/AQAAAAAAAAACAPz/AQAAAAAAAAADAPz/AQAAAAAAAAAEAPz/AQAAAAAAAAAEAP3/AQAAAAAAAAAEAP7/AQAAAAAAAAAEAP//AQAAAAAAAAAEAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAAEAAMAAQAAAAAAAAAEAAQAAQAAAAAAAAADAAQAAQAAAAAAAAACAAQAAQAAAAAAAAABAAQAAQAAAAAAAAABAAMAAQAAAAAAAAABAAIAAQAAAAAAAAABAAEAAQAAAAAAAAABAP//AQAAAAAAAAABAP7/AQAAAAAAAAABAP3/AQAAAAAAAAACAP3/AQAAAAAAAAADAP3/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAQAAAAAAAAADAAMAAQAAAAAAAAACAAMAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAACAP//AQAAAAAAAAACAP7/AQAAAAAAAAD///3/AQAAAAAAAAD+//3/AQAAAAAAAAD9//3/AQAAAAAAAAD+//7/AQAAAAAAAAD///7/AQAAAAAAAAD9//7/AQAAAAAAAAD/////AQAAAAAAAAD9////AQAAAAAAAAD+////AQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD9/wEAAQAAAAAAAAD+/wIAAQAAAAAAAAD9/wIAAQAAAAAAAAD+/wMAAQAAAAAAAAD//wMAAQAAAAAAAAD9/wMAAQAAAAAAAAD7////AAADAAAAAAD7//7/AAADAAAAAAD7//3/AAADAAAAAAD7//z/AAADAAAAAAD7/wEAAAADAAAAAAD7/wIAAAADAAAAAAD7/wMAAAADAAAAAAD7/wQAAAADAAAAAAD7/wUAAAADAAAAAAAFAAUAAAADAAAAAAAFAAQAAAADAAAAAAAFAAMAAAADAAAAAAAFAAIAAAADAAAAAAAFAAEAAAADAAAAAAAFAP//AAADAAAAAAAFAP7/AAADAAAAAAAFAP3/AAADAAAAAAAFAPz/AAADAAAAAAAFAPv/AAADAAAAAAD7//v/AAADAAAAAAD7/wAAAAACAAAAAAAFAAAAAAACAAAAAAAAAAQAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_0hgp5")
+
+[node name="ActiveBuilding" type="Node2D" parent="." unique_id=1883050657]
+y_sort_enabled = true
+
+[node name="HoveringSprite" type="Sprite2D" parent="ActiveBuilding" unique_id=1932947025]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_e61rw")
+script = ExtResource("3_qw2r0")
+
+[node name="Hover" type="Area2D" parent="ActiveBuilding/HoveringSprite" unique_id=1347226381]
+collision_layer = 0
+collision_mask = 192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActiveBuilding/HoveringSprite/Hover" unique_id=1102083763]
+position = Vector2(-56, -56)
+shape = SubResource("RectangleShape2D_reqh1")
+
+[node name="BuildableArea" type="Area2D" parent="." unique_id=450807013]
+visible = false
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildableArea" unique_id=657756109]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_0hgp5")
+
+[node name="WallArea" type="Area2D" parent="." unique_id=1867928822]
+visible = false
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallArea" unique_id=1914814972]
+position = Vector2(8, -72.5)
+shape = SubResource("RectangleShape2D_6hqbw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WallArea" unique_id=514111142]
+position = Vector2(8, 89)
+shape = SubResource("RectangleShape2D_6hqbw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WallArea" unique_id=1616719522]
+position = Vector2(-72.6875, 8)
+shape = SubResource("RectangleShape2D_76qrq")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WallArea" unique_id=574281628]
+position = Vector2(88.75, 8)
+shape = SubResource("RectangleShape2D_76qrq")
+
+[node name="Walls" type="Node2D" parent="." unique_id=1881328320]
+y_sort_enabled = true
+
+[node name="Bottom" type="Sprite2D" parent="Walls" unique_id=983513831]
+texture_filter = 1
+position = Vector2(8, 92)
+texture = ExtResource("6_k1hnu")
+offset = Vector2(0, -12)
+
+[node name="Top" type="Sprite2D" parent="Walls" unique_id=1489587200]
+texture_filter = 1
+position = Vector2(8, -67)
+texture = ExtResource("6_k1hnu")
+offset = Vector2(0, -12)
+
+[node name="TopDoor" type="Sprite2D" parent="Walls" unique_id=2054268735]
+texture_filter = 1
+position = Vector2(8, -67)
+texture = ExtResource("7_ln30p")
+offset = Vector2(0, -12)
+
+[node name="BottomDoor" type="Sprite2D" parent="Walls" unique_id=1662774567]
+texture_filter = 1
+position = Vector2(8, 92)
+texture = ExtResource("7_ln30p")
+offset = Vector2(0, -12)
+
+[connection signal="area_entered" from="ActiveBuilding/HoveringSprite/Hover" to="ActiveBuilding/HoveringSprite" method="_on_hover_area_entered"]
+[connection signal="area_exited" from="ActiveBuilding/HoveringSprite/Hover" to="ActiveBuilding/HoveringSprite" method="_on_hover_area_exited"]

@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://msufmnefh42r"]
+
+[ext_resource type="Script" uid="uid://cv05276j106jd" path="res://scene/main_level/main_level.gd" id="1_dq0vj"]
+[ext_resource type="Texture2D" uid="uid://dphdcqnbrcnxe" path="res://assets/sprite/tile_map/Tileset_sand.png" id="2_rfy4f"]
+[ext_resource type="PackedScene" uid="uid://nykohm1mwa06" path="res://scene/characters/player/player.tscn" id="3_8tepj"]
+[ext_resource type="Texture2D" uid="uid://bp5v0u0cgvxd" path="res://assets/sprite/tile_map/Tileset_sable_new.png" id="3_p3ym8"]
+[ext_resource type="Script" uid="uid://vf778wc3sn7c" path="res://scene/main_level/level.gd" id="4_loucp"]
+[ext_resource type="PackedScene" uid="uid://dtxfaae7o0hh1" path="res://scene/buildings/base_manager/BaseManager.tscn" id="4_rfy4f"]
+[ext_resource type="Shader" uid="uid://c7t3nxikp464f" path="res://ressource/shader/sandstorm.gdshader" id="6_8wkyi"]
+[ext_resource type="PackedScene" uid="uid://bcu4j5nsp83l7" path="res://scene/UI/BuildingUI.tscn" id="6_kg8md"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3ym8"]
+texture = ExtResource("2_rfy4f")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kg8md"]
+texture = ExtResource("3_p3ym8")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0hgp5"]
+sources/1 = SubResource("TileSetAtlasSource_p3ym8")
+sources/2 = SubResource("TileSetAtlasSource_kg8md")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_loucp"]
+shader = ExtResource("6_8wkyi")
+shader_parameter/screen_size = Vector2(1920, 1080)
+shader_parameter/speed = 2.4810001178475
+shader_parameter/intensity = 0.550000026125
+shader_parameter/sand_color = Color(0.99091643, 0.5000296, 0.32650095, 1)
+shader_parameter/noise_scale = 50.0
+shader_parameter/grain_amount = 0.5410000256975
+shader_parameter/player_screen_pos = Vector2(0.5, 0.5)
+shader_parameter/visibility_radius = 0.0
+shader_parameter/visibility_falloff = 0.5470000252839801
+
+[node name="MainLevel" type="Node2D" unique_id=1005481756]
+script = ExtResource("1_dq0vj")
+
+[node name="Level" type="Node2D" parent="." unique_id=1985075876]
+unique_name_in_owner = true
+y_sort_enabled = true
+script = ExtResource("4_loucp")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Level" unique_id=370456454]
+unique_name_in_owner = true
+z_index = -2
+texture_filter = 1
+tile_set = SubResource("TileSet_0hgp5")
+
+[node name="BaseManager" parent="Level" unique_id=101830274 instance=ExtResource("4_rfy4f")]
+unique_name_in_owner = true
+
+[node name="Player" parent="Level" unique_id=473694908 instance=ExtResource("3_8tepj")]
+unique_name_in_owner = true
+
+[node name="ColorRect" type="ColorRect" parent="Level/Player" unique_id=768247563]
+material = SubResource("ShaderMaterial_loucp")
+offset_left = -433.0
+offset_top = -234.0
+offset_right = 395.0
+offset_bottom = 226.0
+
+[node name="BuildMenu" parent="Level/Player" unique_id=125841561 instance=ExtResource("6_kg8md")]
+unique_name_in_owner = true
+offset_left = -311.0
+offset_top = 107.0
+offset_right = -139.0
+offset_bottom = 191.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Ressource" type="Node2D" parent="Level" unique_id=1840291966]
+unique_name_in_owner = true

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://v81rjx3fcvbq"]
+
+[ext_resource type="Texture2D" uid="uid://dwmylqog1jjl4" path="res://assets/sprite/ressources/Energium_ressource.png" id="1_22ua0"]
+[ext_resource type="Script" uid="uid://b88bsim5l6mvi" path="res://scene/ressources/energium/energium.gd" id="2_ss5o2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rijx"]
+size = Vector2(22, 23)
+
+[node name="Energium" type="Sprite2D" unique_id=1257465608]
+texture_filter = 1
+texture = ExtResource("1_22ua0")
+offset = Vector2(0, -6)
+script = ExtResource("2_ss5o2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2127454388]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1727438843]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_8rijx")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
