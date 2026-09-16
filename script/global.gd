@@ -18,9 +18,12 @@ var resource_spawn_ranges = {
 
 
 var main_level : MainLevel
-var building_UI : BuildMenu
 var base_manager : BaseManager
 var player : Player
+
+##UI Global Reference
+var building_UI : BuildMenu
+var resouce_info : ResourceInfoMenu
 
 ##All turret type in array
 var turrets : Array[Building] = [GunTurret.new(),GunTurret.new()]

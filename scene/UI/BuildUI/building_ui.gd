@@ -10,13 +10,11 @@ var upgrades : Array
 func _ready() -> void:
 	_generate_build_and_upgrades_buttons()
 	_generate_menu_from_active_buttons()
-	
 
 func _on_back_pressed() -> void:
 	state_machine.current_state.Transitioned.emit(state_machine.current_state,'Idle')
 	_return_main_build_menu()
 	_generate_menu_from_active_buttons()
-	
 
 func _on_repair_pressed() -> void:
 	state_machine.current_state.Transitioned.emit(state_machine.current_state,'Repair')

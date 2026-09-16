@@ -14,3 +14,4 @@ func _set_global_variable() -> void:
 	Global.base_manager = %BaseManager
 	Global.building_UI = %BuildMenu
 	Global.player = %Player
+	Global.resouce_info = %InfoResourceUI

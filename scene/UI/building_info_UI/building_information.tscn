@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dvgc5l50tc1mg"]
+
+[ext_resource type="Script" uid="uid://uxt05urm8pao" path="res://scene/UI/building_info_UI/building_information.gd" id="1_os3kh"]
+[ext_resource type="Texture2D" uid="uid://bf4whkvpp71c4" path="res://assets/sprite/ui/futuristic_red_button.png" id="1_x50yx"]
+[ext_resource type="FontFile" uid="uid://bh3xs8v0uf37y" path="res://assets/font/PixelPurl.ttf" id="3_os3kh"]
+[ext_resource type="Texture2D" uid="uid://dwmylqog1jjl4" path="res://assets/sprite/ressources/Energium_ressource.png" id="4_4bxlh"]
+[ext_resource type="Texture2D" uid="uid://ww5fpb680t5y" path="res://assets/sprite/ressources/Metal_resource.png" id="5_d43vr"]
+[ext_resource type="Texture2D" uid="uid://v0nl3vj1wisp" path="res://assets/sprite/ressources/Gunpowder.png" id="6_10yfg"]
+
+[node name="Control" type="Control" unique_id=1516989500]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_os3kh")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=2086646104]
+texture_filter = 1
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 20.75
+scale = Vector2(4, 4)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_x50yx")
+region_rect = Rect2(0.912302, 0.97596693, 16.203642, 16.170866)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1160143023]
+texture_filter = 1
+layout_mode = 0
+offset_left = 11.0
+offset_top = 20.0
+offset_right = 107.0
+offset_bottom = 108.0
+theme_override_constants/line_separation = 3
+theme_override_fonts/normal_font = ExtResource("3_os3kh")
+text = "+ 14   
++ 20
++ 5  "
+
+[node name="energium" type="Sprite2D" parent="." unique_id=818320846]
+texture_filter = 1
+position = Vector2(50, 62)
+texture = ExtResource("4_4bxlh")
+
+[node name="gunpowder" type="Sprite2D" parent="." unique_id=1815445652]
+texture_filter = 1
+position = Vector2(50, 28)
+texture = ExtResource("5_d43vr")
+
+[node name="iron" type="Sprite2D" parent="." unique_id=1404486016]
+texture_filter = 1
+position = Vector2(50, 44)
+texture = ExtResource("6_10yfg")

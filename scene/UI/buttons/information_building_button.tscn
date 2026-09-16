@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cyx7f7ttve5w1"]
+
+[ext_resource type="Texture2D" uid="uid://bf4whkvpp71c4" path="res://assets/sprite/ui/futuristic_red_button.png" id="1_0tby5"]
+
+[node name="InformationBuildingButton" type="TextureButton" unique_id=1987145753]
+texture_filter = 1
+offset_right = 8.0
+offset_bottom = 8.0
+texture_normal = ExtResource("1_0tby5")

@@ -3,6 +3,7 @@ class_name BaseManager extends Node2D
 var building_grid : TileMapLayer
 var is_hovering : int =  false
 var cur_building : Building
+
 var selected_building : Building
 
 var in_build_state : bool = false
@@ -12,6 +13,9 @@ var overlaping_building : bool = false
 
 const CONSTRUCTION_SHADER = preload("res://ressource/shader/construction_animation.gdshader")
 
+##Variable For building highlighting
+var highlight_building : bool = false
+var highlight_color : String
 
 func _ready() -> void:
 	self.building_grid = $TileMapLayer
@@ -21,11 +25,19 @@ func _change_selected_building(building : Building) -> void:
 	%HoveringSprite.change_hovered_building(building)
 
 func _process(delta: float) -> void:
+	##This is for the hovering before placing a building
 	if(is_hovering):
 		hover(verify_placement())
 	if(in_build_state && Input.is_action_just_pressed("LeftClick")):
 		place_building()
-		
+	
+	##This is for selecting a building too destroy \ upgrade
+	if highlight_building && selected_building :
+		selected_building.highlight(highlight_color)
+	
+	##Destroying a building
+	if highlight_building && selected_building && Global.building_UI.state_machine.current_state.name.to_lower() == "destroy" && Input.is_action_just_pressed("LeftClick"):
+		destroy_building(selected_building)
 
 func turn_selected_building() -> void:
 	if is_instance_of(cur_building, GunTurret):
@@ -53,7 +65,8 @@ func place_building():
 		new_building.position += Vector2(cur_building.offset.x , cur_building.offset.y + 12)
 	
 	start_building_animation(new_building)
-		
+
+##Aniamtion for building and destroying the building
 func start_building_animation(building : Building):
 	var original_material = building.sprite.material
 	
@@ -74,6 +87,47 @@ func start_building_animation(building : Building):
 	
 	building.building_ready.emit()
 	building.building_finished = true
+
+func destroy_building(building: Building):
+	building.hide_info_ui()
+	var sprite := Sprite2D.new()
+	sprite.texture = building.sprite.texture
+	sprite.global_position = building.sprite.global_position
+	sprite.offset = building.sprite.offset
+	sprite.global_rotation = building.sprite.global_rotation
+	sprite.global_scale = building.sprite.global_scale
+	sprite.vframes = building.sprite.vframes
+	sprite.flip_h = building.sprite.flip_h
+	sprite.hframes = building.sprite.hframes
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.frame = building.sprite.frame
+	
+	sprite.z_index = building.sprite.z_index
+
+	var shader_material := ShaderMaterial.new()
+	shader_material.shader = CONSTRUCTION_SHADER
+	
+	shader_material.set_shader_parameter("build_progress", 1.0)
+	shader_material.set_shader_parameter("line_color", Color.RED)
+
+	sprite.material = shader_material
+
+	building.get_parent().add_child(sprite)
+
+	building.queue_free()
+
+	var tween := create_tween()
+	tween.tween_method(
+		func(value):
+			shader_material.set_shader_parameter("build_progress", value),
+		1.0,
+		0.0,
+		1.0
+	)
+
+	await tween.finished
+
+	sprite.queue_free()
 
 func entered_build_state(building:Building) -> void:
 	in_build_state = true

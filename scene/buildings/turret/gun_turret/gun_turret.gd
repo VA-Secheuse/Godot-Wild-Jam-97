@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 		shoot()
 
 func _ready() -> void:
+	super._ready()
 	self.sprite = $Dummy
 
 func shoot():
@@ -54,6 +55,16 @@ func shoot():
 	_on_cooldown = true
 	cooldown_timer.start()
 
+func highlight(color : String):
+	show_info_ui()
+	%Base.material.set_shader_parameter("use_outline", true)
+	%Top.material.set_shader_parameter("use_outline", true)
+
+func remove_highlight():
+	hide_info_ui()
+	%Base.material.set_shader_parameter("use_outline", false)
+	%Top.material.set_shader_parameter("use_outline", false)
+
 func _shoot_from_first_cannon(dir: Vector2) -> void:
 	var proj := projectile_scene.instantiate() as Projectile
 	proj.global_position = $TopTurretPivot/ProjectileOutput1.global_position
@@ -77,7 +88,6 @@ func _on_building_ready() -> void:
 
 func _on_cool_down_timer_timeout() -> void:
 	_on_cooldown = false
-
 
 ###### DONT TOUCH WONKY LOGIC FOR TURNING #######
 func change_facing(facing : int):

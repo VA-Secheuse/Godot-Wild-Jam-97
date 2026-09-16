@@ -1,12 +1,29 @@
 [gd_scene format=3 uid="uid://cjmg0xldiqx87"]
 
 [ext_resource type="Script" uid="uid://cvkg7udx6agnn" path="res://scene/buildings/turret/gun_turret/gun_turret.gd" id="1_0e40v"]
+[ext_resource type="Shader" uid="uid://d4cuh2rbfmfje" path="res://ressource/shader/highlight.gdshader" id="1_3ub6y"]
 [ext_resource type="PackedScene" uid="uid://rt5rqbkafgto" path="res://scene/buildings/turret/projectile/bullet.tscn" id="2_tww1g"]
 [ext_resource type="Texture2D" uid="uid://c62itliv52fwm" path="res://assets/sprite/building/turrets/turret_bottoms.png" id="3_tww1g"]
 [ext_resource type="Texture2D" uid="uid://dxxy6eyfhorqr" path="res://assets/sprite/building/turrets/turret_shooting_animation.png" id="4_a6sk4"]
 [ext_resource type="Texture2D" uid="uid://cpgijhc471352" path="res://assets/sprite/building/turrets/turret_tops.png" id="4_tww1g"]
 [ext_resource type="Script" uid="uid://c3olgktkehlb5" path="res://scene/buildings/turret/gun_turret/enemy_tracking.gd" id="6_hffxs"]
 [ext_resource type="Texture2D" uid="uid://duiditdoq7k0q" path="res://assets/sprite/building/turrets/turret.png" id="6_tww1g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ub6y"]
+resource_local_to_scene = true
+shader = ExtResource("1_3ub6y")
+shader_parameter/highlight_color = Color(0.7607843, 1, 0.8627451, 1)
+shader_parameter/highlight_strength = 0.0
+shader_parameter/outline_size = 1.0000000475
+shader_parameter/use_outline = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1tqtr"]
+resource_local_to_scene = true
+shader = ExtResource("1_3ub6y")
+shader_parameter/highlight_color = Color(0.7607843, 1, 0.8627451, 1)
+shader_parameter/highlight_strength = 0.0
+shader_parameter/outline_size = 1.0000000475
+shader_parameter/use_outline = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hgp5"]
 size = Vector2(30, 14)
@@ -219,15 +236,18 @@ _data = {
 &"shoot_top": SubResource("Animation_3ub6y")
 }
 
-[node name="GunTurret" type="Node2D" unique_id=1293339363 node_paths=PackedStringArray("cooldown_timer")]
+[node name="GunTurret" type="Node2D" unique_id=1293339363 node_paths=PackedStringArray("cooldown_timer", "colliding_area", "menu_coordinate")]
 script = ExtResource("1_0e40v")
 projectile_scene = ExtResource("2_tww1g")
 cooldown_timer = NodePath("CoolDownTimer")
+colliding_area = NodePath("Area2D")
+menu_coordinate = NodePath("menu_marker")
 
 [node name="Base" type="Sprite2D" parent="." unique_id=1533326475]
 unique_name_in_owner = true
 visible = false
 texture_filter = 1
+material = SubResource("ShaderMaterial_3ub6y")
 texture = ExtResource("3_tww1g")
 offset = Vector2(0, -12)
 hframes = 3
@@ -249,6 +269,7 @@ position = Vector2(-6, 16)
 unique_name_in_owner = true
 visible = false
 texture_filter = 1
+material = SubResource("ShaderMaterial_1tqtr")
 texture = ExtResource("4_tww1g")
 offset = Vector2(0, 5)
 hframes = 3
@@ -276,7 +297,7 @@ hframes = 3
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1071440254]
 unique_name_in_owner = true
-visible = false
+z_index = 6
 position = Vector2(-4, -8)
 rotation = 1.5707964
 collision_layer = 64
@@ -299,6 +320,7 @@ frame = 2
 
 [node name="EnemyTracking" type="Area2D" parent="." unique_id=1665620755]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-18, -15)
 rotation = 1.5707964
 collision_layer = 0
@@ -311,6 +333,9 @@ polygon = PackedVector2Array(13, -18, 183.99998, -536, 387, -511, 387, -21, 387.
 [node name="CoolDownTimer" type="Timer" parent="." unique_id=576044040]
 wait_time = 0.5
 one_shot = true
+
+[node name="menu_marker" type="Marker2D" parent="." unique_id=1840270462]
+position = Vector2(15, -33)
 
 [connection signal="building_ready" from="." to="." method="_on_building_ready"]
 [connection signal="body_entered" from="EnemyTracking" to="EnemyTracking" method="_on_body_entered"]
