@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m8hx7xjppbgq"
-path="res://.godot/imported/Tourelle_placeholder.png-833fc8d65072807e2060923bb396b702.ctex"
+uid="uid://dmd7id8bsx5ag"
+path="res://.godot/imported/turret_face_down_bottom.png-d1e65aeb456dabad4d0c8a883dd8c070.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/building/turrets/Tourelle_placeholder.png"
-dest_files=["res://.godot/imported/Tourelle_placeholder.png-833fc8d65072807e2060923bb396b702.ctex"]
+source_file="res://assets/sprite/building/turrets/turret_face_down_bottom.png"
+dest_files=["res://.godot/imported/turret_face_down_bottom.png-d1e65aeb456dabad4d0c8a883dd8c070.ctex"]
 
 [params]
 

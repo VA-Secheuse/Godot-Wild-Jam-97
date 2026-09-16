@@ -4,9 +4,11 @@ class_name MapGenerator extends Node2D
 var resource_parent : Node2D
 var spawned_position : Array
 var tile_map_layer : TileMapLayer
+var projectile_node : Node2D
 
 func _ready() -> void:
 	self.tile_map_layer = %TileMapLayer
+	projectile_node = %Projectiles
 	resource_parent = %Ressource
 	spawned_position = []
 

@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://cyvyt0n86g7vu"]
+
+[ext_resource type="Script" uid="uid://cvkg7udx6agnn" path="res://scene/buildings/turret/gun_turret/gun_turret.gd" id="1_gblej"]
+[ext_resource type="PackedScene" uid="uid://rt5rqbkafgto" path="res://scene/buildings/turret/projectile/bullet.tscn" id="2_g8174"]
+[ext_resource type="Texture2D" uid="uid://c62itliv52fwm" path="res://assets/sprite/building/turrets/turret_bottoms.png" id="3_jmhsc"]
+[ext_resource type="Texture2D" uid="uid://cpgijhc471352" path="res://assets/sprite/building/turrets/turret_tops.png" id="4_ujiy0"]
+[ext_resource type="Texture2D" uid="uid://dxxy6eyfhorqr" path="res://assets/sprite/building/turrets/turret_shooting_animation.png" id="5_3nk5s"]
+[ext_resource type="Texture2D" uid="uid://duiditdoq7k0q" path="res://assets/sprite/building/turrets/turret.png" id="6_0lu12"]
+[ext_resource type="Script" uid="uid://c3olgktkehlb5" path="res://scene/buildings/turret/gun_turret/enemy_tracking.gd" id="7_iwykc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hgp5"]
+size = Vector2(30, 14)
+
+[sub_resource type="Animation" id="Animation_sug45"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopTurretPivot/Top:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopTurretPivot/Top/Gun1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopTurretPivot/Top/Gun2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_a6sk4"]
+resource_name = "shoot"
+length = 0.375
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopTurretPivot/Top:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0.0, -2.0, -3.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopTurretPivot/Top/Gun1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopTurretPivot/Top/Gun2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vysbt"]
+_data = {
+&"RESET": SubResource("Animation_sug45"),
+&"shoot_right": SubResource("Animation_a6sk4")
+}
+
+[node name="gun_turret_left" type="Node2D" unique_id=1293339363 node_paths=PackedStringArray("cooldown_timer")]
+script = ExtResource("1_gblej")
+projectile_scene = ExtResource("2_g8174")
+cooldown_timer = NodePath("CoolDownTimer")
+
+[node name="Base" type="Sprite2D" parent="." unique_id=1533326475]
+visible = false
+texture_filter = 1
+texture = ExtResource("3_jmhsc")
+offset = Vector2(0, -12)
+hframes = 3
+
+[node name="TopTurretPivot" type="Marker2D" parent="." unique_id=146856844]
+position = Vector2(-5, -18)
+
+[node name="ProjectileOutput1" type="Marker2D" parent="TopTurretPivot" unique_id=147600116]
+position = Vector2(19, 5)
+
+[node name="ProjectileOutput2" type="Marker2D" parent="TopTurretPivot" unique_id=1772800347]
+position = Vector2(19, -4)
+
+[node name="Top" type="Sprite2D" parent="TopTurretPivot" unique_id=1010735149]
+visible = false
+texture_filter = 1
+texture = ExtResource("4_ujiy0")
+offset = Vector2(5, 0)
+hframes = 3
+
+[node name="Gun2" type="Sprite2D" parent="TopTurretPivot/Top" unique_id=2052580332]
+visible = false
+texture_filter = 1
+position = Vector2(22, 6)
+texture = ExtResource("5_3nk5s")
+hframes = 3
+
+[node name="Gun1" type="Sprite2D" parent="TopTurretPivot/Top" unique_id=722615760]
+visible = false
+texture_filter = 1
+position = Vector2(22, -3)
+texture = ExtResource("5_3nk5s")
+hframes = 3
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1071440254]
+unique_name_in_owner = true
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=65864779]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_0hgp5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=42949131]
+libraries/ = SubResource("AnimationLibrary_vysbt")
+
+[node name="Dummy" type="Sprite2D" parent="." unique_id=1499160697]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("6_0lu12")
+offset = Vector2(0, -12)
+flip_h = true
+hframes = 3
+
+[node name="EnemyTracking" type="Area2D" parent="." unique_id=1665620755]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_iwykc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyTracking" unique_id=1588883043]
+polygon = PackedVector2Array(13, -18, 294, -195, 294, 195)
+
+[node name="CoolDownTimer" type="Timer" parent="." unique_id=576044040]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="building_ready" from="." to="." method="_on_building_ready"]
+[connection signal="body_entered" from="EnemyTracking" to="EnemyTracking" method="_on_body_entered"]
+[connection signal="body_exited" from="EnemyTracking" to="EnemyTracking" method="_on_body_exited"]
+[connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]

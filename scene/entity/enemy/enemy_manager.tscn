@@ -36,8 +36,5 @@ shape = SubResource("RectangleShape2D_gkuxk")
 wait_time = 4.0
 one_shot = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=542528987]
-zoom = Vector2(0.3, 0.3)
-
 [connection signal="wave_finished" from="." to="." method="_on_wave_finished"]
 [connection signal="timeout" from="Timer" to="." method="_start_spawning_enemy"]

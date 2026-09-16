@@ -1,27 +1,40 @@
 [gd_scene format=3 uid="uid://c8ge3uyjq22hw"]
 
 [ext_resource type="Script" uid="uid://dneersjkpkprs" path="res://scene/entity/enemy/sand_sprite/sand_sprite.gd" id="1_dwxk0"]
+[ext_resource type="Script" uid="uid://7cylb2kpkl2r" path="res://ressource/enemy/enemy_stat.gd" id="2_0htch"]
 [ext_resource type="Texture2D" uid="uid://cx4ubdo6rvmh" path="res://assets/sprite/entity/monster/sand_sprite_spritesheet.png" id="2_hoyuu"]
+[ext_resource type="Resource" uid="uid://mg0r0d0ab84w" path="res://ressource/enemy/sand_sprite_level_1.tres" id="3_m6qnj"]
 [ext_resource type="Script" uid="uid://lankyagd7i8i" path="res://script/state_machine/state_machine.gd" id="3_mlxxo"]
 [ext_resource type="Script" uid="uid://cqc50cf5egqob" path="res://scene/entity/enemy/sand_sprite/idle.gd" id="4_0ywgw"]
+[ext_resource type="Resource" uid="uid://hwhbvfn8igu3" path="res://ressource/enemy/sand_sprite_level_2.tres" id="4_nbikr"]
 [ext_resource type="Script" uid="uid://dvo81ct6ihbg8" path="res://scene/entity/enemy/sand_sprite/walking.gd" id="5_0htch"]
 [ext_resource type="Script" uid="uid://dh6n8gon18d80" path="res://scene/entity/enemy/sand_sprite/attack.gd" id="6_m6qnj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mng6"]
-size = Vector2(12, 9)
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ywgw"]
+radius = 6.0827627
 
-[node name="SandSprite" type="CharacterBody2D" unique_id=1076228096]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ywgw"]
+size = Vector2(18, 27)
+
+[node name="SandSprite" type="CharacterBody2D" unique_id=1076228096 node_paths=PackedStringArray("aim_position") groups=["enemies"]]
+collision_layer = 2
+collision_mask = 70
 script = ExtResource("1_dwxk0")
+stats_by_level = Array[ExtResource("2_0htch")]([ExtResource("3_m6qnj"), ExtResource("4_nbikr"), null])
+aim_position = NodePath("Sprite2D/aim_position")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1149364374]
 position = Vector2(0, -5)
-shape = SubResource("RectangleShape2D_6mng6")
+shape = SubResource("CircleShape2D_0ywgw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1314197989]
 texture_filter = 1
 texture = ExtResource("2_hoyuu")
 offset = Vector2(0, -12)
 hframes = 3
+
+[node name="aim_position" type="Marker2D" parent="Sprite2D" unique_id=1237110390]
+position = Vector2(0, -5)
 
 [node name="StateMachine" type="Node" parent="." unique_id=1194259039 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_mlxxo")
@@ -36,3 +49,11 @@ script = ExtResource("5_0htch")
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=117221063]
 script = ExtResource("6_m6qnj")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1878179808]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1939187585]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_0ywgw")

@@ -16,6 +16,7 @@ var max_cluster_size : int
 var min_time_spacing :float
 var max_time_spacing : float
 
+
 var timer : Timer
 
 func _ready() -> void:
@@ -60,7 +61,6 @@ func _start_spawning_enemy() -> void :
 	
 	timer.wait_time = next_spawn_time
 	timer.start()
-	
 
 ##This instantiate and keep all the reference of the enemy in an array
 func _get_enemy_wave(wave_number : int) -> Array[Enemy]:
@@ -72,6 +72,7 @@ func _get_enemy_wave(wave_number : int) -> Array[Enemy]:
 			var new_enemy : Enemy = enemy_wave_entry.instantiate_enemy()
 			#This give the side where the enemy needs to spawn
 			new_enemy.side = enemy_wave_entry.pick_random_side()
+			new_enemy.level = enemy_wave_entry.level
 			new_enemy.killed.connect(_on_enemy_killed)
 			enemy_wave.append(new_enemy)
 	

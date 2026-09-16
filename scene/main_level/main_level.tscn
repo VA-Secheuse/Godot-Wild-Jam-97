@@ -67,16 +67,24 @@ tile_set = SubResource("TileSet_0hgp5")
 [node name="BaseManager" parent="Level" unique_id=101830274 instance=ExtResource("4_rfy4f")]
 unique_name_in_owner = true
 
+[node name="EnemyManager" parent="Level" unique_id=77188829 instance=ExtResource("9_ja1vs")]
+
+[node name="Ressource" type="Node2D" parent="Level" unique_id=1840291966]
+unique_name_in_owner = true
+
+[node name="Projectiles" type="Node2D" parent="Level" unique_id=2132991336]
+unique_name_in_owner = true
+
 [node name="Player" parent="Level" unique_id=473694908 instance=ExtResource("3_8tepj")]
 unique_name_in_owner = true
 
 [node name="ColorRect" type="ColorRect" parent="Level/Player" unique_id=768247563]
 z_index = 4
 material = SubResource("ShaderMaterial_loucp")
-offset_left = -433.0
-offset_top = -234.0
-offset_right = 395.0
-offset_bottom = 226.0
+offset_left = -415.0
+offset_top = -190.0
+offset_right = 413.0
+offset_bottom = 270.0
 
 [node name="BuildMenu" parent="Level/Player" unique_id=125841561 instance=ExtResource("6_kg8md")]
 unique_name_in_owner = true
@@ -86,8 +94,3 @@ offset_top = 107.0
 offset_right = -139.0
 offset_bottom = 191.0
 scale = Vector2(0.75, 0.75)
-
-[node name="Ressource" type="Node2D" parent="Level" unique_id=1840291966]
-unique_name_in_owner = true
-
-[node name="EnemyManager" parent="." unique_id=77188829 instance=ExtResource("9_ja1vs")]

@@ -1,3 +1,5 @@
+ProjectileStat
+EnemyStat
 WaveResource
 Shader
 ShaderMaterial

@@ -26,7 +26,12 @@ func _process(delta: float) -> void:
 	if(in_build_state && Input.is_action_just_pressed("LeftClick")):
 		place_building()
 		
-	
+
+func turn_selected_building() -> void:
+	if is_instance_of(cur_building, GunTurret):
+		var turret : GunTurret = cur_building
+		turret.next_placement_side()
+		%HoveringSprite.change_hovered_building(turret)
 
 func place_building():
 	if(!verify_placement()):
@@ -35,10 +40,18 @@ func place_building():
 	var new_building : Building = new_packed_scene.instantiate()
 	##Setting the position of the building
 	var local_pos = building_grid.to_local(get_global_mouse_position())
-	new_building.position = (building_grid.local_to_map(local_pos) * Vector2i(16,16))
-	new_building.position.x += new_building.size.x * Global.tile_size.x - Global.tile_size.x
-	new_building.position.y -= new_building.offset.y 
+	new_building.position = Vector2(building_grid.local_to_map(local_pos) * Vector2i(16,16))
+	#new_building.sprite.offset = new_building.offset
 	$ActiveBuilding.add_child(new_building)
+	
+	##THIS IS ONLY FOR THE GUN TURRET BECAUSE ITS SIDED CALISSSSEE
+	if is_instance_of(new_building,GunTurret):
+		new_building as GunTurret
+		new_building.current_facing = cur_building.current_facing
+		new_building.place_good_side()
+		print(cur_building.offset)
+		new_building.position += Vector2(cur_building.offset.x , cur_building.offset.y + 12)
+	
 	start_building_animation(new_building)
 		
 func start_building_animation(building : Building):
@@ -60,6 +73,7 @@ func start_building_animation(building : Building):
 	building.sprite.material = original_material
 	
 	building.building_ready.emit()
+	building.building_finished = true
 
 func entered_build_state(building:Building) -> void:
 	in_build_state = true
@@ -86,3 +100,33 @@ func hover(valid : bool) -> void:
 
 func verify_placement() -> bool :
 	return in_base && !overlaping_building
+
+func get_closest_wall_coord_from_point(point: Vector2) -> Vector2:
+	var closest_point := Vector2.ZERO
+	var closest_dist := INF
+
+	for wall in [%Top, %Bottom, %Left, %Right]:
+		var shape_node : CollisionShape2D = wall
+		var shape := shape_node.shape as RectangleShape2D
+		if shape == null:
+			continue
+
+		var xform := shape_node.global_transform
+		var local_point := xform.affine_inverse() * point
+
+		# Godot 4: RectangleShape2D uses "size", half of that is the extent
+		var half_size := shape.size * 0.5
+
+		var clamped_local := Vector2(
+			clampf(local_point.x, -half_size.x, half_size.x),
+			clampf(local_point.y, -half_size.y, half_size.y)
+		)
+
+		var world_point := xform * clamped_local
+		var dist := point.distance_to(world_point)
+
+		if dist < closest_dist:
+			closest_dist = dist
+			closest_point = world_point
+
+	return closest_point

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c3f6hns50fmq0"]
+
+[ext_resource type="Texture2D" uid="uid://35pgfxjrvnhy" path="res://assets/sprite/vfx/projectile/bullet.png" id="1_e6hnj"]
+[ext_resource type="Script" uid="uid://be3vdkbkl35b8" path="res://scene/buildings/turret/projectile/projectile.gd" id="1_yrf14"]
+[ext_resource type="Resource" uid="uid://biynrae3rl6eo" path="res://ressource/projectile/bullet_stat.tres" id="2_e4hk8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pexu"]
+size = Vector2(8, 3)
+
+[node name="Projectile" type="Area2D" unique_id=1469666647]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_yrf14")
+projectile_stat = ExtResource("2_e4hk8")
+
+[node name="Timer" type="Timer" parent="." unique_id=278736769]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2037583501]
+texture_filter = 1
+texture = ExtResource("1_e6hnj")
+offset = Vector2(0, -0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1923264359]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_5pexu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

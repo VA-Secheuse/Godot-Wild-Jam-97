@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://rt5rqbkafgto"]
+
+[ext_resource type="Texture2D" uid="uid://35pgfxjrvnhy" path="res://assets/sprite/vfx/projectile/bullet.png" id="1_e6hnj"]
+[ext_resource type="Script" uid="uid://be3vdkbkl35b8" path="res://scene/buildings/turret/projectile/projectile.gd" id="1_yrf14"]
+[ext_resource type="Resource" uid="uid://biynrae3rl6eo" path="res://ressource/projectile/bullet_stat.tres" id="2_e4hk8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt44k"]
+size = Vector2(8, 4)
+
+[node name="Area2D" type="Area2D" unique_id=1993188094]
+collision_layer = 4
+collision_mask = 32
+script = ExtResource("1_yrf14")
+projectile_stat = ExtResource("2_e4hk8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104663429]
+shape = SubResource("RectangleShape2D_rt44k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=641944727]
+texture_filter = 1
+texture = ExtResource("1_e6hnj")
+
+[node name="Timer" type="Timer" parent="." unique_id=642918791]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://dfgtotu8mnggb" path="res://ressource/wave/enemy_wave_entry.gd" id="1_5lv5s"]
 [ext_resource type="Script" uid="uid://7o7dadxni3to" path="res://ressource/wave/wave_resource.gd" id="2_rqjjl"]
 
-[sub_resource type="Resource" id="Resource_i3gv3"]
+[sub_resource type="Resource" id="Resource_ja1vs"]
 script = ExtResource("1_5lv5s")
-amount = 120
+amount = 90
 enabled_sides = 15
 metadata/_custom_type_script = "uid://dfgtotu8mnggb"
 
 [resource]
 script = ExtResource("2_rqjjl")
-entries = Array[ExtResource("1_5lv5s")]([SubResource("Resource_i3gv3")])
+entries = Array[ExtResource("1_5lv5s")]([SubResource("Resource_ja1vs")])
 metadata/_custom_type_script = "uid://7o7dadxni3to"

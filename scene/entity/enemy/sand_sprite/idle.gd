@@ -1,11 +1,14 @@
 extends State
 
+var enemy : Enemy
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	enemy = $"../.."
+	
+	
+func Update(_delta:float) -> void:
+	if enemy.global_position.distance_to(enemy.target_coordinate) > enemy.stats.attack_range:
+		Transitioned.emit(self,"Walking")
+	
+	elif  enemy.global_position.distance_to(enemy.target_coordinate) < enemy.stats.attack_range:
+		Transitioned.emit(self,"Attack")

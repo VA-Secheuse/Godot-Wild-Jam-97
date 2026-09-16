@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bcu4j5nsp83l7"]
 
-[ext_resource type="Texture2D" uid="uid://m8hx7xjppbgq" path="res://assets/sprite/building/turrets/Tourelle_placeholder.png" id="1_8yx5r"]
+[ext_resource type="Texture2D" uid="uid://m8hx7xjppbgq" path="res://assets/sprite/building/turrets/turret_facing_right.png" id="1_8yx5r"]
 [ext_resource type="Script" uid="uid://dgqf8mdm0but3" path="res://scene/UI/building_ui.gd" id="1_ww300"]
 [ext_resource type="Texture2D" uid="uid://c1147pi8tt20x" path="res://assets/sprite/ui/back_arrow.png" id="2_xpnh5"]
 [ext_resource type="Texture2D" uid="uid://cpiknboxcjw11" path="res://assets/sprite/ui/Destroy.png" id="3_gs2tq"]

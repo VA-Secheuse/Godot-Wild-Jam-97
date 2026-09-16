@@ -16,10 +16,6 @@ func mine(damage : int):
 	if cur_health <= 0 :
 		_destroy_rock()
 
-func _process(delta: float) -> void:
-	if(Input.is_action_just_pressed("test")):
-		mine(50)
-
 func _verify_integrity(damage : int) -> int:
 	var new_life_total : int= cur_health - damage
 	var threshold_size = float(max_health) / float(nb_of_drop)

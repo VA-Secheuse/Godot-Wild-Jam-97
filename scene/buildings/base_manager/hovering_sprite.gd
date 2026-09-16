@@ -11,11 +11,13 @@ func change_hovered_building(building : Building):
 	$Hover/CollisionShape2D.shape.size = Global.tile_size * building.place
 	
 	##Offest the building to have the base be at the bottom
-	offset.x = building.size.x * Global.tile_size.x - Global.tile_size.x
-	$Hover/CollisionShape2D.position = Vector2(building.place.x * Global.tile_size.x/2, building.place.y * Global.tile_size.y/2) 
+	offset.x = building.offset.x
+	offset.y = building.offset.y
+	$Hover/CollisionShape2D.position = Vector2(building.place.x * 16.0/2, building.place.y * Global.tile_size.y/2) 
 
 func set_placement_valid(is_valid: bool):
 	material.set_shader_parameter("invalid_amount", 0.0 if is_valid else 0.5)
+	
 func _on_hover_area_entered(area: Area2D) -> void:
 	##If enterring layer 8 (Buildable Area)
 	if (area.collision_layer) == 128 :
