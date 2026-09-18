@@ -6,6 +6,7 @@ func Enter():
 	player = owner
 
 func Update(_delta:float):
+	$"../../AnimationPlayer".play("walk")
 	if (player.velocity.x < 0):
 		$"../../Sprite2D".flip_h = false
 	elif(player.velocity.x > 0):

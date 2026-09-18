@@ -12,12 +12,12 @@ func _on_body_exited(body: Node2D) -> void:
 
 func get_closest_enemy_from_point(point: Vector2) -> Node2D:
 	var closest_enemy: Node2D = null
-	var closest_dist_sq := INF
+	var closest_dist := INF
 	for enemy in enemies_in_range:
-		if not is_instance_valid(enemy):  # enemy might have been freed (died) without exiting cleanly
+		if not is_instance_valid(enemy):
 			continue
-		var dist_sq := point.distance_squared_to(enemy.global_position)
-		if dist_sq < closest_dist_sq:
-			closest_dist_sq = dist_sq
+		var dist := point.distance_squared_to(enemy.global_position)
+		if dist < closest_dist:
+			closest_dist = dist
 			closest_enemy = enemy
 	return closest_enemy

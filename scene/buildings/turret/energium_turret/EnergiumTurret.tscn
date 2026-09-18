@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://cyqlxljshfd30"]
+
+[ext_resource type="Script" uid="uid://d0ucxvgwykqid" path="res://scene/buildings/turret/energium_turret/energium_turret.gd" id="1_rtutr"]
+[ext_resource type="Shader" uid="uid://d4cuh2rbfmfje" path="res://ressource/shader/highlight.gdshader" id="2_fgflo"]
+[ext_resource type="Texture2D" uid="uid://bm2844tpvheoy" path="res://assets/sprite/building/turrets/Mortar/energy_turret.png" id="2_ny870"]
+[ext_resource type="Shader" uid="uid://be80xalw8p8i" path="res://ressource/shader/ring_projectile.gdshader" id="4_au7m8"]
+[ext_resource type="Script" uid="uid://c3olgktkehlb5" path="res://scene/buildings/turret/gun_turret/enemy_tracking.gd" id="4_coldq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_au7m8"]
+resource_local_to_scene = true
+shader = ExtResource("2_fgflo")
+shader_parameter/highlight_color = Color(0.7607843, 1, 0.8627451, 1)
+shader_parameter/highlight_strength = 0.0
+shader_parameter/outline_size = 1.0000000475
+shader_parameter/use_outline = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hgp5"]
+size = Vector2(26, 12.25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hgp5"]
+radius = 232.07758
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hqbw"]
+size = Vector2(30, 26.25)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_coldq"]
+resource_local_to_scene = true
+shader = ExtResource("4_au7m8")
+shader_parameter/ring_radius_px = 0.0
+shader_parameter/ring_thickness_px = 20.00000095
+shader_parameter/ring_color = Color(1, 0.5, 0.2, 1)
+shader_parameter/fade_out = 0.0
+shader_parameter/node_size_px = Vector2(600, 600)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6hqbw"]
+
+[node name="EnergiumTurret" type="Node2D" unique_id=1069154672 node_paths=PackedStringArray("cooldown_timer", "colliding_area", "menu_coordinate")]
+y_sort_enabled = true
+script = ExtResource("1_rtutr")
+cooldown_timer = NodePath("CoolDownTimer")
+kcnoback_strenght = 50
+colliding_area = NodePath("Clicking")
+menu_coordinate = NodePath("MenuMarker")
+
+[node name="TurretSprite" type="Sprite2D" parent="." unique_id=1179801824]
+texture_filter = 1
+material = SubResource("ShaderMaterial_au7m8")
+position = Vector2(16, 22)
+texture = ExtResource("2_ny870")
+offset = Vector2(0, -23)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2058182131]
+z_index = 1
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1467099907]
+position = Vector2(16, 15.125)
+shape = SubResource("RectangleShape2D_0hgp5")
+
+[node name="EnemyTracking" type="Area2D" parent="." unique_id=1747947883]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_coldq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTracking" unique_id=936190451]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_0hgp5")
+
+[node name="CoolDownTimer" type="Timer" parent="." unique_id=1518084619]
+wait_time = 2.0
+one_shot = true
+
+[node name="MenuMarker" type="Marker2D" parent="." unique_id=1926626117]
+position = Vector2(22, -52)
+
+[node name="Clicking" type="Area2D" parent="." unique_id=1321799565]
+z_index = 3
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Clicking" unique_id=1736144782]
+position = Vector2(16, 11)
+shape = SubResource("RectangleShape2D_6hqbw")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1084594131]
+z_index = 3
+material = SubResource("ShaderMaterial_coldq")
+custom_minimum_size = Vector2(500, 500)
+offset_left = -234.0
+offset_top = -266.0
+offset_right = 266.0
+offset_bottom = 234.0
+mouse_filter = 2
+
+[node name="PusleArea" type="Area2D" parent="." unique_id=136882825]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PusleArea" unique_id=136850662]
+shape = SubResource("CircleShape2D_6hqbw")
+
+[connection signal="building_ready" from="." to="." method="_on_building_ready"]
+[connection signal="body_entered" from="EnemyTracking" to="EnemyTracking" method="_on_body_entered"]
+[connection signal="body_exited" from="EnemyTracking" to="EnemyTracking" method="_on_body_exited"]
+[connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]

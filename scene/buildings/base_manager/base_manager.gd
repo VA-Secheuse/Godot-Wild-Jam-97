@@ -57,7 +57,7 @@ func place_building():
 	$ActiveBuilding.add_child(new_building)
 	
 	##THIS IS ONLY FOR THE GUN TURRET BECAUSE ITS SIDED CALISSSSEE
-	if is_instance_of(new_building,GunTurret):
+	if new_building.is_sided:
 		new_building as GunTurret
 		new_building.current_facing = cur_building.current_facing
 		new_building.place_good_side()

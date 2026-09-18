@@ -11,10 +11,11 @@ func Enter() -> void:
 	direction = enemy.global_position.direction_to(enemy.target_coordinate)
 	
 func Update(_delta:float) -> void:
-	enemy.velocity = direction * enemy.stats.speed
+	if not enemy.is_knocked_back:
+		enemy.velocity = direction * enemy.stats.speed
 	enemy.move_and_slide()
 	if enemy.global_position.distance_to(enemy.target_coordinate) < enemy.stats.attack_range:
-		Transitioned.emit(self,"Attack")
+		Transitioned.emit(self, "Attack")
 	_update_direction()
 
 func _update_direction() -> void:

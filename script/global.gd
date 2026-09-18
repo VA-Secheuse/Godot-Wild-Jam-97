@@ -26,7 +26,7 @@ var building_UI : BuildMenu
 var resouce_info : ResourceInfoMenu
 
 ##All turret type in array
-var turrets : Array[Building] = [GunTurret.new(),GunTurret.new()]
+var turrets : Array[Building] = [GunTurret.new(),EnergiumTurret.new(), MortarTurret.new()]
 
 var upgrades : Array
 

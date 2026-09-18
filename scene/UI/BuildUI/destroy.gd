@@ -1,7 +1,6 @@
 extends State
 
-func Enter():
-	print("entered destroy state")
+func Enter():	
 	Global.base_manager.highlight_building = true
 	Global.base_manager.highlight_color = "cool"
 

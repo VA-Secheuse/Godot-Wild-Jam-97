@@ -11,6 +11,10 @@ var target_coordinate : Vector2
 @export var aim_position : Marker2D
 var stats: EnemyStat
 
+var is_knocked_back: bool = false
+@export var knockback_duration: float = 0.2 
+
+
 signal killed
 
 func _ready() -> void:
@@ -40,3 +44,10 @@ func destroy() -> void :
 
 static func instantiate(type: Type) -> Enemy:
 	return scenes[type].instantiate()
+
+
+func apply_knockback(velocity_to_apply: Vector2) -> void:
+	velocity = velocity_to_apply
+	is_knocked_back = true
+	await get_tree().create_timer(knockback_duration).timeout
+	is_knocked_back = false

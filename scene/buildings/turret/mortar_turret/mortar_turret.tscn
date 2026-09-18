@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dtt5rohwan22j"]
+
+[ext_resource type="Script" uid="uid://byl1xr4a8hdkg" path="res://scene/buildings/turret/mortar_turret/mortar_turret.gd" id="1_t1mty"]
+[ext_resource type="Texture2D" uid="uid://bm7siit6uku11" path="res://assets/sprite/building/turrets/Mortar/Mortar.png" id="2_6ve1n"]
+[ext_resource type="Shader" uid="uid://d4cuh2rbfmfje" path="res://ressource/shader/highlight.gdshader" id="2_sw256"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b23a7"]
+resource_local_to_scene = true
+shader = ExtResource("2_sw256")
+shader_parameter/highlight_color = Color(0.7607843, 1, 0.8627451, 1)
+shader_parameter/highlight_strength = 0.0
+shader_parameter/outline_size = 1.0000000475
+shader_parameter/use_outline = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sw256"]
+size = Vector2(23.5, 8.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ve1n"]
+size = Vector2(24, 24.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1mty"]
+radius = 313.0016
+
+[node name="MortarTurret" type="Node2D" unique_id=99783632 node_paths=PackedStringArray("colliding_area", "menu_coordinate")]
+script = ExtResource("1_t1mty")
+colliding_area = NodePath("ClickingArea")
+menu_coordinate = NodePath("MenuMarker")
+
+[node name="TurretSprite" type="Sprite2D" parent="." unique_id=138027477]
+texture_filter = 1
+material = SubResource("ShaderMaterial_b23a7")
+position = Vector2(17, 8)
+texture = ExtResource("2_6ve1n")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1813038115]
+position = Vector2(4, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1387462683]
+position = Vector2(13.25, 21.75)
+shape = SubResource("RectangleShape2D_sw256")
+
+[node name="ClickingArea" type="Area2D" parent="." unique_id=1849408729]
+position = Vector2(4, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickingArea" unique_id=2015909904]
+position = Vector2(13, 14.25)
+shape = SubResource("RectangleShape2D_6ve1n")
+
+[node name="EnemyTracking" type="Area2D" parent="." unique_id=1402066081]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTracking" unique_id=2095970756]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_t1mty")
+
+[node name="CoolDownTimer" type="Timer" parent="." unique_id=999948848]
+
+[node name="MenuMarker" type="Marker2D" parent="." unique_id=353637714]
+position = Vector2(32, -3)

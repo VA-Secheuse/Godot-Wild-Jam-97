@@ -240,6 +240,19 @@ _data = {
 script = ExtResource("1_0e40v")
 projectile_scene = ExtResource("2_tww1g")
 cooldown_timer = NodePath("CoolDownTimer")
+price = Array[Dictionary]([{
+"energium": 0,
+"gunpowder": 0,
+"iron": 40
+}, {
+"energium": 0,
+"gunpowder": 10,
+"iron": 40
+}, {
+"energium": 5,
+"gunpowder": 20,
+"iron": 50
+}])
 colliding_area = NodePath("Area2D")
 menu_coordinate = NodePath("menu_marker")
 
